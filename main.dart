@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:qr_project/qr_generator.dart';
-import 'package:qr_project/qr_scanner.dart';
-import 'home.dart';
+import 'package:googlemap/search.dart';
+
+
+import 'bgnu.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -13,16 +14,55 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter QR Code App',
+      title: 'Google Map',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        primarySwatch: Colors.blue,
       ),
-      home: const MyScreen(),
-      debugShowCheckedModeBanner: false,
-      routes: {
-        '/QRCodeGenerator': (context) => const QRCodeGeneratorScreen(),
-        '/QRCodeScanner': (context) => const QRCodeScanner(),
-      },
+      home: GoogleMapScreen(),
+    );
+  }
+}
+
+class GoogleMapScreen extends StatelessWidget {
+  const GoogleMapScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('GOOGLE Map'),
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          color: Colors.brown,
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => GoogleMapScreenn()),
+                  );
+                },
+                child: Text('SEARCH Location'),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => BgnuMapScreen()),
+                  );
+                },
+                child: Text('BGNU Locations'),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
